@@ -111,7 +111,7 @@ const LayoutBase = props => {
             <AdSlot type='native' />
           </div>
 
-          {fullWidth ? null : (
+          {fullWidth || !siteConfig('SIMPLE_SIDEBAR_ENABLE', true, CONFIG) ? null : (
             <div
               id='right-sidebar'
               className='hidden xl:block flex-none sticky top-8 w-96 border-l dark:border-gray-800 pl-12 border-gray-100'>

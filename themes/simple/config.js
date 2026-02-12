@@ -13,6 +13,12 @@ const CONFIG = {
 
   SIMPLE_ARTICLE_RECOMMEND_POSTS: process.env.NEXT_PUBLIC_SIMPLE_ARTICLE_RECOMMEND_POSTS || true, // 文章详情底部显示推荐
 
+  // 文章底部「上一篇/下一篇」导航，设为 false 可隐藏
+  SIMPLE_ARTICLE_AROUND: process.env.NEXT_PUBLIC_THEME_SIMPLE_ARTICLE_AROUND !== 'false',
+
+  // 页脚「Powered by NotionNext」链接，设为 false 可隐藏
+  SIMPLE_FOOTER_POWERED_BY: process.env.NEXT_PUBLIC_THEME_SIMPLE_FOOTER_POWERED_BY !== 'false',
+
   // 右侧栏（目录、公告、Live2D 等），设为 false 可隐藏
   SIMPLE_SIDEBAR_ENABLE: process.env.NEXT_PUBLIC_THEME_SIMPLE_SIDEBAR_ENABLE !== 'false',
 

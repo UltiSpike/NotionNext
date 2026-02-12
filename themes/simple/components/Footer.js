@@ -1,6 +1,7 @@
 import { BeiAnGongAn } from '@/components/BeiAnGongAn'
 import DarkModeButton from '@/components/DarkModeButton'
 import { siteConfig } from '@/lib/config'
+import CONFIG from '../config'
 
 /**
  * 页脚
@@ -34,14 +35,16 @@ export default function Footer(props) {
             </a>
           )}
           <BeiAnGongAn />
-          <span className='no-underline ml-4'>
-            Powered by
-            <a
-              href='https://github.com/tangly1024/NotionNext'
-              className=' hover:underline'>
-              NotionNext {siteConfig('VERSION')}
-            </a>
-          </span>
+          {siteConfig('SIMPLE_FOOTER_POWERED_BY', true, CONFIG) && (
+            <span className='no-underline ml-4'>
+              Powered by
+              <a
+                href='https://github.com/tangly1024/NotionNext'
+                className=' hover:underline'>
+                NotionNext {siteConfig('VERSION')}
+              </a>
+            </span>
+          )}
         </div>
       </div>
     </footer>

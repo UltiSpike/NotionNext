@@ -246,7 +246,9 @@ const LayoutSlug = props => {
 
           {post?.type === 'Post' && (
             <>
-              <ArticleAround prev={prev} next={next} />
+              {siteConfig('SIMPLE_ARTICLE_AROUND', true, CONFIG) && (
+                <ArticleAround prev={prev} next={next} />
+              )}
               <RecommendPosts recommendPosts={recommendPosts} />
             </>
           )}

@@ -324,6 +324,234 @@ const Style = () => {
         background: var(--zen-vermillion);
       }
 
+      /* ============================================================== */
+      /* ===== Editorial Press Run — 文章内阅读体验（长文优先） ========= */
+      /* ============================================================== */
+
+      /* 文章容器纵向节奏 */
+      #theme-zen .notion-page {
+        padding: 0 !important;
+      }
+
+      /* —— 段落节奏（CJK 友好）—— */
+      #theme-zen .notion-page .notion-text {
+        margin: 1.2em 0 !important;
+        padding: 0 !important;
+        font-size: 1rem;
+        text-align: justify;
+        text-justify: inter-character;
+        hyphens: auto;
+      }
+
+      /* —— 首段首字下沉：印刷书籍开篇气质 —— */
+      /* 仅作用于文章正文第一个 .notion-text（避开 callout/quote 等开篇） */
+      #theme-zen .notion-page .notion-page-content > div:first-child .notion-text::first-letter,
+      #theme-zen .notion-page .notion-page-content > .notion-text:first-child::first-letter {
+        font-family: var(--zen-font-cjk);
+        float: left;
+        font-size: 3.4em;
+        line-height: 0.9;
+        padding: 0.18em 0.12em 0 0;
+        margin-right: 0.05em;
+        color: var(--zen-vermillion);
+        font-weight: 500;
+        text-shadow: 0 0 0 var(--zen-vermillion);
+      }
+
+      /* —— H1 Hero：文章标题下一道朱红短横 —— */
+      #theme-zen .notion-h-1,
+      #theme-zen h1.notion-h {
+        font-size: 1.9rem !important;
+        font-weight: 500 !important;
+        padding-left: 0 !important;
+        border-left: none !important;
+        margin-top: 2.6em !important;
+        margin-bottom: 1em !important;
+        position: relative;
+      }
+      #theme-zen .notion-h-1::after,
+      #theme-zen h1.notion-h::after {
+        content: '';
+        display: block;
+        width: 2.5rem;
+        height: 2px;
+        background: var(--zen-vermillion);
+        margin-top: 0.55em;
+        opacity: 0.85;
+      }
+
+      /* —— Callout 重做：化盒为雅注（顶底细朱红线 + 斜体衬线）—— */
+      #theme-zen .notion-callout {
+        background: transparent !important;
+        border: none !important;
+        border-top: 1px solid var(--zen-vermillion) !important;
+        border-bottom: 1px solid var(--zen-vermillion) !important;
+        border-radius: 0 !important;
+        padding: 1.4em 0.2em !important;
+        margin: 2.4em 0 !important;
+        box-shadow: none !important;
+        display: flex;
+        align-items: flex-start;
+        gap: 0.9em;
+      }
+      #theme-zen .notion-callout .notion-page-icon-inline {
+        flex-shrink: 0;
+        opacity: 0.7;
+        font-size: 1.1em;
+        margin-top: 0.15em;
+      }
+      #theme-zen .notion-callout-text,
+      #theme-zen .notion-callout .notion-text {
+        font-family: var(--zen-font-cjk) !important;
+        font-style: italic;
+        color: var(--zen-indigo) !important;
+        margin: 0 !important;
+        line-height: 1.85 !important;
+        font-size: 0.96em;
+      }
+
+      /* —— 列表：朱红小圆点 / 连字符 bullet —— */
+      #theme-zen .notion-list {
+        padding-left: 1.5em !important;
+        margin: 1.2em 0 !important;
+      }
+      #theme-zen .notion-list-disc > li,
+      #theme-zen .notion-list-numbered > li {
+        margin: 0.55em 0 !important;
+        line-height: 1.85;
+        padding-left: 0.3em;
+      }
+      #theme-zen .notion-list-disc > li::marker {
+        content: '·  ';
+        color: var(--zen-vermillion);
+        font-weight: 700;
+        font-size: 1.2em;
+      }
+      #theme-zen .notion-list-numbered > li::marker {
+        color: var(--zen-vermillion);
+        font-family: var(--zen-font-latin);
+        font-size: 0.95em;
+        font-style: italic;
+      }
+
+      /* —— Code 块：顶部语言标签（小号小体字 + 朱红）—— */
+      #theme-zen .notion-code {
+        position: relative;
+        margin: 1.6em 0 !important;
+        padding-top: 2.1em !important;
+      }
+      #theme-zen .notion-code::before {
+        content: attr(data-language);
+        position: absolute;
+        top: 0.55em;
+        left: 1.2em;
+        font-family: var(--zen-font-latin);
+        font-size: 0.72em;
+        font-style: italic;
+        letter-spacing: 0.18em;
+        text-transform: lowercase;
+        color: var(--zen-vermillion);
+        opacity: 0.75;
+      }
+      /* 代码内部字体回退（覆盖 react-notion-x 硬编码） */
+      #theme-zen .notion-code > code {
+        font-family: var(--zen-font-mono) !important;
+        color: var(--zen-ink) !important;
+        background: transparent !important;
+      }
+
+      /* —— 图片 caption：小号灰衬线斜体，居中 —— */
+      #theme-zen .notion-asset-caption,
+      #theme-zen .notion-asset-wrapper figcaption {
+        font-family: var(--zen-font-latin) !important;
+        font-style: italic;
+        font-size: 0.85em;
+        color: var(--zen-gray);
+        text-align: center;
+        margin-top: 0.6em;
+        line-height: 1.6;
+      }
+
+      /* —— 标题锚点：悬停时才出现的朱红 § —— */
+      #theme-zen .notion-hash-link,
+      #theme-zen .notion-header-anchor {
+        opacity: 0;
+        color: var(--zen-vermillion) !important;
+        margin-left: 0.4em;
+        transition: opacity 180ms ease;
+        font-weight: 400;
+      }
+      #theme-zen .notion-h:hover .notion-hash-link,
+      #theme-zen .notion-h:hover .notion-header-anchor {
+        opacity: 0.6;
+      }
+
+      /* —— Table of Contents 目录：克制的 serif 列表 —— */
+      #theme-zen .notion-table-of-contents {
+        border-left: 1px solid var(--zen-divider);
+        padding-left: 1em !important;
+        margin: 2em 0 !important;
+        background: transparent !important;
+      }
+      #theme-zen .notion-table-of-contents-item {
+        font-family: var(--zen-font-cjk) !important;
+        font-size: 0.92em;
+        padding: 0.25em 0 !important;
+        color: var(--zen-gray) !important;
+        border: none !important;
+      }
+      #theme-zen .notion-table-of-contents-item:hover {
+        color: var(--zen-vermillion) !important;
+        background: transparent !important;
+      }
+
+      /* —— 分割线 hr / notion-divider：细朱红短线居中 —— */
+      #theme-zen .notion-page hr,
+      #theme-zen .notion-divider {
+        border: none !important;
+        background: var(--zen-vermillion) !important;
+        opacity: 0.5;
+        width: 2rem;
+        height: 1px;
+        margin: 3em auto !important;
+      }
+
+      /* —— 段内加粗：不加粗、改为朱红色（编辑风格）—— */
+      #theme-zen .notion-text strong,
+      #theme-zen .notion-text b {
+        font-weight: 600;
+        color: var(--zen-vermillion);
+      }
+
+      /* —— 外链 emphasis：小号大写注释 —— */
+      #theme-zen .notion-text em {
+        font-style: italic;
+        color: var(--zen-indigo);
+      }
+
+      /* —— Toggle（折叠块）—— */
+      #theme-zen .notion-toggle summary {
+        font-family: var(--zen-font-cjk) !important;
+        color: var(--zen-ink) !important;
+        padding: 0.5em 0 !important;
+      }
+
+      /* —— Page icon（文章顶部大 emoji）—— */
+      #theme-zen .notion-page-icon-hero,
+      #theme-zen .notion-page-icon {
+        font-size: 2em !important;
+        margin-bottom: 0.4em !important;
+      }
+
+      /* ----- Dark mode 补齐 ----- */
+      .dark #theme-zen .notion-callout {
+        border-top-color: var(--zen-vermillion) !important;
+        border-bottom-color: var(--zen-vermillion) !important;
+      }
+      .dark #theme-zen .notion-code > code {
+        color: var(--zen-ink) !important;
+      }
+
       /* ----- 响应式：移动端收紧 ----- */
       @media (max-width: 640px) {
         #theme-zen {
@@ -331,6 +559,14 @@ const Style = () => {
         }
         #theme-zen .notion-h {
           padding-left: 0.6rem;
+        }
+        #theme-zen .notion-page .notion-page-content > div:first-child .notion-text::first-letter,
+        #theme-zen .notion-page .notion-page-content > .notion-text:first-child::first-letter {
+          font-size: 2.8em;
+        }
+        #theme-zen .notion-callout {
+          padding: 1.1em 0 !important;
+          gap: 0.6em;
         }
       }
     `}</style>
